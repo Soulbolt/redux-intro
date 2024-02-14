@@ -1,5 +1,4 @@
 const initialStateCustomer = {
-  // account: initialStateAccount,
   fullName: "",
   nationalID: "",
   createdAt: "",
