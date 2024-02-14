@@ -1,15 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import "./index.css";
 import App from "./App";
 import store from "./store";
 
-store.dispatch({ type: "account/desposit", payload: 500 });
-console.log(store.getState());
+// This is the code that connects React to Redux.
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
