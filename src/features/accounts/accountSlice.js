@@ -31,8 +31,18 @@ export default function accountReducer(state = initialStateAccount, action) {
   }
 }
 
-export function desposit(amount) {
-  return { type: "account/desposit", payload: amount };
+export function desposit(amount, currency) {
+  if (currency === "USD") return { type: "account/desposit", payload: amount };
+  return async function (dispatch, getState) {
+    // API CALL
+    const res = await fetch(
+      `https://api.exchangeratesapi.io/latest?base=${currency}`
+    );
+    // return action
+    const data = await res.json();
+    console.log(data);
+    //  dispatch({ type: "account/desposit", payload: amount * data.rates.USD });
+  };
 }
 
 export function withdraw(amount) {
