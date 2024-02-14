@@ -36,12 +36,12 @@ export function desposit(amount, currency) {
   return async function (dispatch, getState) {
     // API CALL
     const res = await fetch(
-      `https://api.exchangeratesapi.io/latest?base=${currency}`
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
     );
     // return action
     const data = await res.json();
-    console.log(data);
-    //  dispatch({ type: "account/desposit", payload: amount * data.rates.USD });
+    const convertedAmount = data.rates.USD;
+    dispatch({ type: "account/desposit", payload: convertedAmount });
   };
 }
 
